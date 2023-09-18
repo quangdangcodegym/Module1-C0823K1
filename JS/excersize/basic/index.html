@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /**
+        // -3
+        let number = +prompt("Nhập vào 1 số kiểm tra xem phải số nguyên tốt không: ");
+
+        let flag = true; // giả sử number là số nguyên tố
+        if (number <= 2) {
+            flag = false;
+        } else {
+            for (let i = 2; i <= number - 1; i++) {
+                if (number % i == 0) {
+                    flag = false;   // cập nhật flag ko phải là số nguyên tố
+                    break;
+                }
+            }
+        }
+        if (flag == true) {
+            alert(number + " là số nguyên tố")
+        } else {
+            alert(number + " không là số nguyên tố")
+        }
+
+        **/
+
+
+        let nNumber = +prompt("Nhập vào một số: ");
+
+        for (let k = 2; k <= nNumber; k++) {
+            let flag = true; // giả sử number là số nguyên tố
+            if (k <= 2) {
+                flag = false;
+            } else {
+                for (let i = 2; i <= k - 1; i++) {
+                    if (k % i == 0) {
+                        flag = false;   // cập nhật flag ko phải là số nguyên tố
+                        break;
+                    }
+                }
+            }
+            if (flag == true) {
+                console.log(k + " là số nguyên tố")
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 14px;
+        }
+
+        .container {
+            width: 300px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .login-head {
+            text-align: center;
+        }
+
+        .login-row {
+            margin-bottom: 6px;
+        }
+
+        .login-row label {
+            display: block;
+        }
+
+        .login-input {
+            padding: 4px 16px;
+            outline: none;
+            border: 0px;
+            border-bottom: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .login-input-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .login-input-container .icon-first {
+            font-size: 0.6rem;
+            position: absolute;
+            top: calc(50% - calc(0.6rem / 2));
+            left: 0;
+            margin-left: 4px;
+        }
+
+        .login-input-container .icon-last {
+            font-size: 0.6rem;
+            position: absolute;
+            top: calc(50% - calc(0.6rem / 2));
+            right: 0;
+            margin-right: 4px;
+        }
+
+        .login-input-container .icon-last {
+            font-size: 0.6rem;
+            position: absolute;
+            top: calc(50% - calc(0.6rem / 2));
+            right: 0;
+            margin-right: 4px;
+            display: none;
+        }
+
+        /* .login-input-container input:required:valid~i:last-child, */
+        .login-input-container input:focus:valid~i:last-child,
+        .login-input-container input:valid[focused="true"]~i:last-child {
+            color: green;
+            display: block;
+        }
+
+        /* .login-input-container input:required:invalid~i:last-child, */
+        .login-input-container input:focus:invalid~i:last-child,
+        .login-input-container input:invalid[focused="true"]~i:last-child {
+            color: red;
+            display: block;
+        }
+
+        .frm-login {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" class="frm-login" novalidate>
+            <h1 class="login-head">Login</h1>
+            <div class="login-row">
+                <label for="">Username</label>
+                <div class="login-input-container">
+                    <input pattern="^[a-zA-Z0-9]{5,10}$" required class="login-input" type="text"
+                        placeholder="Enter your name" onblur="handleInputBlur(this)">
+                    <i class="fa-solid fa-person icon-first"></i>
+                    <i class="fa-solid fa-check icon-last"></i>
+                </div>
+
+            </div>
+            <div class="login-row">
+                <label for="">Email</label>
+                <div class="login-input-container">
+                    <input required class="login-input" type="email" onblur="handleInputBlur(this)"
+                        placeholder="Enter your password">
+                    <i class="fa-solid fa-lock icon-first"></i>
+                    <i class="fa-solid fa-check icon-last"></i>
+                </div>
+            </div>
+            <div class="login-row">
+                <button>Login</button>
+            </div>
+        </form>
+
+    </div>
+    <script>
+        function handleInputBlur(ele) {
+            ele.setAttribute("focused", true);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="txtName" type="text" placeholder="Enter your name" onchange="handleNameChange()">
+    <input id="txtPass" type="text" placeholder="Enter your password" onfocus="handlePasswordChange()"
+        onblur="handlePasswordBlur()">
+    <select id="sGender" onchange="handleGenderChange()">
+        <option value="MALE">Nam</option>
+        <option value="FEMALE">Nữ</option>
+    </select>
+</body>
+<script>
+    function handleNameChange() {
+        let valueName = document.getElementById("txtName").value;
+        console.log(valueName);
+    }
+    function handlePasswordChange() {
+        let valuePass = document.getElementById("txtPass").value;
+        console.log(valuePass);
+    }
+    function handleGenderChange() {
+        let valueGender = document.getElementById("sGender").value;
+        console.log(valueGender);
+    }
+    function handlePasswordBlur() {
+        document.getElementById("txtPass").style.color = "red";
+    }
+</script>
+
+</html>
