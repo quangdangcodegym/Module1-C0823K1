@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Battery {
+            constructor() {
+                this.energy = 0;
+            }
+            setEnergy(energy) {
+                this.energy = energy;
+            }
+            getEnergy() {
+                return this.energy;
+            }
+            decreaseEnergy() {
+                this.energy -= Battery.energy;
+            }
+        }
+
+        class FlashLamp {
+            constructor() {
+                this.status = false;
+                this.battery = null;
+            }
+            setBattery(battery) {
+                this.battery = battery;
+            }
+            getBattery() {
+                return this.battery;
+            }
+
+            turnOn() {
+                this.status = true;
+            }
+            turnOff() {
+                this.status = false;
+            }
+            toString() {
+                return `Lamp status: ${this.status} & energy: ${this.battery.energy}`;
+            }
+        }
+
+        let b1 = new Battery();
+        b1.setEnergy(10);
+
+
+        let f1 = new FlashLamp();
+        f1.setBattery(b1);
+        f1.turnOn();
+
+        console.log(f1.toString());
+
+
+    </script>
+</body>
+
+</html>

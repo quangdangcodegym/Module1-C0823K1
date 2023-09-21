@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Student {
+            constructor(id, name, age, phone) {
+                this.id = id;
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+                this.hobbies = [];
+            }
+            getPhone() {
+                return this.phone.substring(0, 8) + 'xxx';
+            }
+            setAge(age) {
+                if (age < 0 || age > 120) {
+                    throw new Error('Tuoi ko hop le');
+                } else {
+                    this.age = age;
+                }
+
+            }
+        }
+
+        let s1 = new Student(1, 'Quang', 31, '0399578134');
+        let s2 = new Student(2, 'Nhan', 13, '0399578134');
+        let s3 = new Student(3, 'Anh', 14, '0399578134');
+
+        console.log(s1.getPhone());
+        console.log(s1.age);
+    </script>
+
+
+</body>
+
+</html>
