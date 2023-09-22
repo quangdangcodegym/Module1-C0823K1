@@ -115,3 +115,7 @@ cursor: pointer;
 .btn-dark {
   background-color: black;
 }
+
+.hide {
+  display: none;
+}

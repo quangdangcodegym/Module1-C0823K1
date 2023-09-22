@@ -36,8 +36,8 @@ function renderStudents() {
                 <td>
                 </td>
                 <td>
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <i class="fa-solid fa-trash-can"></i>
+                    <i onclick="handleShowEditStudent(${students[i].id})"class="fa-solid fa-pen-to-square"></i>
+                    <i onclick="handleTrashStudent(${students[i].id}, '${students[i].name}')" class="fa-solid fa-trash-can"></i>
                 </td>
             </tr>
         `;
@@ -64,6 +64,9 @@ function handleShowModalCreate() {
 }
 
 function handleBtnModalCreate() {
+    document.getElementById("btnModalUpdate").classList.add("hide");
+    document.getElementById("btnModalCreate").classList.remove("hide");
+
     let name = document.getElementById("mTxtName").value;
     let age = document.getElementById("mTxtAge").value;
     let phone = document.getElementById("mTxtPhone").value;
@@ -77,4 +80,56 @@ function handleBtnModalCreate() {
     renderStudents();
 
     modal.style.display = "none";
+}
+function handleTrashStudent(id, name) {
+    let check = confirm("Are you sure to delete " + name + " ?");
+    if (check) {
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].id == id) {
+                students.splice(i, 1);
+            }
+        }
+        renderStudents();
+    }
+}
+function handleShowEditStudent(id) {
+    let s = null;
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            s = students[i];
+        }
+    }
+
+    document.getElementById("id-student").value = id;
+    document.getElementById("btnModalUpdate").classList.remove("hide");
+    document.getElementById("btnModalCreate").classList.add("hide");
+
+    document.getElementById("mTxtName").value = s.name;
+    document.getElementById("mTxtAge").value = s.age;
+    document.getElementById("mTxtPhone").value = s.phone;
+    document.getElementById("mTxtHobbies").value = s.hobbies;
+
+    modal.style.display = "block";
+}
+function handleBtnModalUpdate() {
+    let id = document.getElementById("id-student").value;
+
+    let name = document.getElementById("mTxtName").value;
+    let age = document.getElementById("mTxtAge").value;
+    let phone = document.getElementById("mTxtPhone").value;
+    let hobbies = document.getElementById("mTxtHobbies").value;
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            students[i].name = name;
+            students[i].age = age;
+            students[i].phone = phone;
+            students[i].hobbies = hobbies;
+        }
+    }
+    modal.style.display = "none";
+    renderStudents();
+
+
+
 }

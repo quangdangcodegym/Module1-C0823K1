@@ -48,6 +48,7 @@
             </div>
             <div class="modal-body">
                 <form action="#" method="post">
+                    <input type="hidden" name="id-student" id="id-student" />
                     <div class="frm-sc-row">
                         <h4>Name</h4>
                         <div>
@@ -75,6 +76,8 @@
                     <div class="frm-sc-row">
                         <button type="button" class="btn btn-primary" id="btnModalCreate"
                             onclick="handleBtnModalCreate()">Create</button>
+                        <button type="button" class="btn btn-primary hide" id="btnModalUpdate"
+                            onclick="handleBtnModalUpdate()">Update</button>
                         <button type="button" class="btn btn-dark" id="btnModalCancel"
                             onclick="handleBtnModalCancel()">Cancel</button>
                     </div>
