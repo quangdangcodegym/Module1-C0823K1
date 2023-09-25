@@ -61,6 +61,13 @@ window.onclick = function (evt) {
 }
 function handleShowModalCreate() {
     modal.style.display = "flex";
+    document.getElementById("mTxtName").value = "";
+    document.getElementById("mTxtAge").value = "";
+    document.getElementById("mTxtPhone").value = "";
+    document.getElementById("mTxtHobbies").value = "";
+
+    document.getElementById("btnModalUpdate").classList.add("hide");
+    document.getElementById("btnModalCreate").classList.remove("hide");
 }
 
 function handleBtnModalCreate() {
@@ -72,7 +79,9 @@ function handleBtnModalCreate() {
     let phone = document.getElementById("mTxtPhone").value;
     let hobbies = document.getElementById("mTxtHobbies").value;
 
-    let maxID = students.length + 1;
+    let maxID = findMaxId(students) + 1;
+
+
     let studentNew = new Student(maxID, name, age, phone);
     studentNew.hobbies = hobbies;
 
@@ -84,32 +93,41 @@ function handleBtnModalCreate() {
 function handleTrashStudent(id, name) {
     let check = confirm("Are you sure to delete " + name + " ?");
     if (check) {
-        for (let i = 0; i < students.length; i++) {
-            if (students[i].id == id) {
-                students.splice(i, 1);
-            }
-        }
+        deleteStudentById(id);
         renderStudents();
     }
 }
-function handleShowEditStudent(id) {
-    let s = null;
+function deleteStudentById(id) {
     for (let i = 0; i < students.length; i++) {
         if (students[i].id == id) {
-            s = students[i];
+            students.splice(i, 1);
         }
     }
+}
+function handleShowEditStudent(id) {
+    let s = findStudentByID(id);
+    if (s == null) {
+        alert("Student not found");
+    } else {
+        document.getElementById("id-student").value = id;
+        document.getElementById("btnModalUpdate").classList.remove("hide");
+        document.getElementById("btnModalCreate").classList.add("hide");
 
-    document.getElementById("id-student").value = id;
-    document.getElementById("btnModalUpdate").classList.remove("hide");
-    document.getElementById("btnModalCreate").classList.add("hide");
+        document.getElementById("mTxtName").value = s.name;
+        document.getElementById("mTxtAge").value = s.age;
+        document.getElementById("mTxtPhone").value = s.phone;
+        document.getElementById("mTxtHobbies").value = s.hobbies;
 
-    document.getElementById("mTxtName").value = s.name;
-    document.getElementById("mTxtAge").value = s.age;
-    document.getElementById("mTxtPhone").value = s.phone;
-    document.getElementById("mTxtHobbies").value = s.hobbies;
-
-    modal.style.display = "block";
+        modal.style.display = "block";
+    }
+}
+function findStudentByID(id) {
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            return students[i];
+        }
+    }
+    return null;
 }
 function handleBtnModalUpdate() {
     let id = document.getElementById("id-student").value;
@@ -119,17 +137,31 @@ function handleBtnModalUpdate() {
     let phone = document.getElementById("mTxtPhone").value;
     let hobbies = document.getElementById("mTxtHobbies").value;
 
-    for (let i = 0; i < students.length; i++) {
-        if (students[i].id == id) {
-            students[i].name = name;
-            students[i].age = age;
-            students[i].phone = phone;
-            students[i].hobbies = hobbies;
-        }
-    }
+    let student = new Student(id, name, age, phone);
+    student.hobbies = hobbies;
+
+
+    updateStudentById(id, student);
     modal.style.display = "none";
     renderStudents();
 
 
 
+}
+function updateStudentById(id, student) {
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            students[i].name = student.name;
+            students[i].age = student.age;
+            students[i].phone = student.phone;
+            students[i].hobbies = student.hobbies;
+        }
+    }
+}
+
+function findMaxId(students) {
+    let s1 = [...students]; // Sao chép mảng students thành s1
+    s1.sort((a, b) => b.id - a.id);
+
+    return s1[0].id;
 }

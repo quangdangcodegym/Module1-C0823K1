@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        function sum(a, b) {
+            // let c = a + b;
+            // return c;
+            return a + b;
+        }
+        // hàm vô danh anonymous function
+        let funcSum = function (a, b) {
+            return a + b;
+        }
+        console.log(funcSum(3, 5));
+
+        // arrowwn function (hàm mũi tên)
+        let funcSum1 = (a, b) => {
+            return a + b;
+        }
+
+        console.log(funcSum1(4, 4));
+        let funcSum2 = (a, b) => a + b;
+
+        console.log(funcSum2(5, 5));
+
+
+        function checkEvenNumber(number) {
+            return number % 2 == 0;
+        }
+        // Vô danh
+        let f1 = function (n) {
+            return n % 2 == 0;
+        }
+        // arrowwn function (hàm mũi tên)
+
+        let f2 = (a) => a % 2 == 0;
+        let f3 = a => a % 2 == 0;   // Nếu 1 tham số thì bỏ ngoặc ()
+
+        console.log(f2(8));
+
+
+        function printHello() {
+            console.log("hello!");
+        }
+        let b1 = function () {
+            console.log("hello!");
+        }
+        let b2 = () => {
+            console.log("hello!");
+        }
+
+        let b3 = () => console.log("hello!");   // nếu bên trong hàm mũi tên mà có CHỈ 1 dòng code => có thể viết GỌN HƠN
+
+
+         let arr = [2, 4, 7];
+        let arr2 = [];
+        for (let i = 0; i < arr.length; i++) {
+            arr2.push(arr[i] * 2);
+        }
+
+
+        let arr = [2, 4, 7];
+        let results = arr.map((v, i, numbers) => v * 3);
+
+
+        let arr = [2, 4, 7];
+        let results = arr.map(v => v * 3);
+        console.log(results)
+
+
+         let students = [
+            {
+                "id": 1,
+                "name": "Quang",
+                "age": 12
+            },
+            {
+                "id": 2,
+                "name": "Quang1",
+                "age": 31
+            },
+            {
+                "id": 3,
+                "name": "Quang2",
+                "age": 10
+            }
+
+        ];
+
+
+        // for (let i = 0; i < students.length; i++) {
+        //     console.log(`Name: ${students[i].name} age ${students[i].age}`);
+        // }
+
+        students.forEach((s, index) => {
+            console.log(`Index: ${index} Name: ${s.name} age ${s.age}`);
+        })
+
+        let students = [
+            {
+                "id": 1,
+                "name": "Quang",
+                "age": 12
+            },
+            {
+                "id": 2,
+                "name": "Quang1",
+                "age": 31
+            },
+            {
+                "id": 3,
+                "name": "Quang2",
+                "age": 10
+            }
+
+        ];
+
+
+        // for (let i = 0; i < students.length; i++) {
+        //     console.log(`Name: ${students[i].name} age ${students[i].age}`);
+        // }
+
+        students.forEach(function (s, i) {
+            console.log(`Name: ${students[i].name} age ${students[i].age}`);
+        })
+
+
+        const ages = [3, 10, 18, 20];
+        let index = ages.findIndex(function (v) {
+            return v >= 18;
+        })
+
+
+        const ages = [3, 10, 18, 20];
+        let funcCheck = function (v) {
+            return v >= 18;
+        }
+        let index = ages.findIndex(funcCheck)
+
+        console.log(index);
+
+        const ages = [3, 10, 18, 20];
+        let index = ages.findIndex(v => v >= 18);
+        console.log(index);
+
+
+        const ages = [3, 10, 18, 20];
+        function funcCheck(v) {
+            return v >= 18;
+        }
+        let index = ages.findIndex(funcCheck)
+        console.log(index);
+        **/
+
+
+        const points = [40, 100, 1, 5, 25, 10];
+        // points.sort((a, b) => a - b);
+        points.sort((a, b) => b - a);
+        console.log(points);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
