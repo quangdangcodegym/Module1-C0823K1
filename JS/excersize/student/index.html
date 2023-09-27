@@ -19,6 +19,7 @@
         <div class="s-body">
             <div class="s-menu">
                 <button class="btn btn-primary" onclick="handleShowModalCreate()">Create</button>
+                <button class="btn btn-delete" id="btnDelete">Delete</button>
             </div>
             <table class="st">
                 <thead>
@@ -52,19 +53,23 @@
                     <div class="frm-sc-row">
                         <h4>Name</h4>
                         <div>
-                            <input id="mTxtName" class="col-3" type="text" placeholder="Enter your name" />
+                            <input pattern="^[a-zA-Z0-9\s]{5,20}$" id="mTxtName" class="col-3" type="text"
+                                placeholder="Enter your name" />
+                            <p class="validate-error">Tên không hợp lệ</p>
                         </div>
                     </div>
                     <div class="frm-sc-row">
                         <h4>Age</h4>
                         <div>
-                            <input id="mTxtAge" class="col-1" type="number" />
+                            <input min="0" max="100" id="mTxtAge" class="col-1" type="number" />
+                            <p class="validate-error">Tuổi không hợp lệ</p>
                         </div>
                     </div>
                     <div class="frm-sc-row">
                         <h4>Phone</h4>
                         <div>
-                            <input id="mTxtPhone" class="col-3" type="text" />
+                            <input pattern="^(0[1-9]\d{8,9})$" id="mTxtPhone" class="col-3" type="text" />
+                            <p class="validate-error">Số điện thoại không hợp lệ</p>
                         </div>
                     </div>
                     <div class="frm-sc-row">

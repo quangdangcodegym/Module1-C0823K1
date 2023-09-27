@@ -22,22 +22,42 @@ let s1 = new Student(1, 'Quang', 31, '0399578134');
 let s2 = new Student(2, 'Nhan', 13, '0399578134');
 let s3 = new Student(3, 'Anh', 14, '0399578134');
 
-let students = [s1, s2, s3];
+let KEY_STUDENTS = "KEY_STUDENTS";
+let students = [];      // object => JSON
+readData();
+
+
+
+function readData() {
+
+    if (localStorage.getItem(KEY_STUDENTS)) {
+        students = JSON.parse(localStorage.getItem(KEY_STUDENTS)); // JSON
+    } else {
+        students = [s1, s2, s3];
+        localStorage.setItem(KEY_STUDENTS, JSON.stringify(students));
+    }
+
+}
+
+function saveData(data) {
+    localStorage.setItem(KEY_STUDENTS, JSON.stringify(data));
+}
+
 
 function renderStudents() {
     let studentsHtml = "";
     for (let i = 0; i < students.length; i++) {
         let item = `
-            <tr>
+            <tr id='${students[i].id}'>
                 <td>${students[i].id}</td>
                 <td>${students[i].name}</td>
                 <td>${students[i].age}</td>
                 <td>${students[i].phone}</td>
                 <td>
                 </td>
-                <td>
+                <td class='cell-action'>
                     <i onclick="handleShowEditStudent(${students[i].id})"class="fa-solid fa-pen-to-square"></i>
-                    <i onclick="handleTrashStudent(${students[i].id}, '${students[i].name}')" class="fa-solid fa-trash-can"></i>
+                    
                 </td>
             </tr>
         `;
@@ -69,7 +89,6 @@ function handleShowModalCreate() {
     document.getElementById("btnModalUpdate").classList.add("hide");
     document.getElementById("btnModalCreate").classList.remove("hide");
 }
-
 function handleBtnModalCreate() {
     document.getElementById("btnModalUpdate").classList.add("hide");
     document.getElementById("btnModalCreate").classList.remove("hide");
@@ -86,6 +105,7 @@ function handleBtnModalCreate() {
     studentNew.hobbies = hobbies;
 
     students.push(studentNew);
+    saveData(students);
     renderStudents();
 
     modal.style.display = "none";
@@ -94,6 +114,7 @@ function handleTrashStudent(id, name) {
     let check = confirm("Are you sure to delete " + name + " ?");
     if (check) {
         deleteStudentById(id);
+        saveData(students);
         renderStudents();
     }
 }
@@ -142,6 +163,7 @@ function handleBtnModalUpdate() {
 
 
     updateStudentById(id, student);
+    saveData(students);
     modal.style.display = "none";
     renderStudents();
 
@@ -158,10 +180,56 @@ function updateStudentById(id, student) {
         }
     }
 }
-
 function findMaxId(students) {
     let s1 = [...students]; // Sao chép mảng students thành s1
     s1.sort((a, b) => b.id - a.id);
 
     return s1[0].id;
+}
+
+
+let btnDelete = document.getElementById("btnDelete");
+let idDeleteds = [];
+btnDelete.addEventListener("click", (evt) => {          // evt: sự kiện đang tác động
+    let btnPresent = evt.target;                        // evt.target: SẼ biết được element nào đang được tác động
+    if (!btnPresent.classList.contains('toggle')) {     // btnPresent = btnDelete: class ="btn btn-delete [có toggle hoặc ko]" kiểm tra xem có class toggle không
+        // Show ra các checkbox đế xóa
+        let cellActions = document.querySelectorAll(".cell-action");        // tìm ra tất cả các ô td xóa của các dòng
+        cellActions.forEach((td) => {
+            let parentElement = td.parentElement;                           // tìm tới thẻ cha để lấy ID
+
+            let inputElement = document.createElement('input');             // tạo thẻ checkbox
+            inputElement.type = "checkbox";
+            inputElement.id = parentElement.id;
+
+            td.append(inputElement);        // thêm vô từng  ô td xóa của các dòng
+        })
+    } else {
+        // Thực hiện xóa
+        // Reset lại, không hiển thị mấy ô checkbox nữa
+        let checkboxs = document.querySelectorAll(".cell-action input[type=checkbox]");         // tìm tới các ô checkbox
+        checkboxs.forEach((cb) => {
+            if (cb.checked) {
+                idDeleteds.push(cb.id);
+            }
+            cb.remove();
+        })
+
+        // idDeleteds: [1,2,4]
+        deleteStudentByIds(idDeleteds);
+        saveData(students);
+        renderStudents();
+    }
+    btnPresent.classList.toggle('toggle');
+})
+
+
+function deleteStudentByIds(ids) {
+    for (let i = 0; i < ids.length; i++) {
+        for (let j = 0; j < students.length; j++) {
+            if (ids[i] == students[j].id) {
+                students.splice(j, 1)
+            }
+        }
+    }
 }

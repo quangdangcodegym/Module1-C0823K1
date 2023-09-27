@@ -115,7 +115,24 @@ cursor: pointer;
 .btn-dark {
   background-color: black;
 }
+.btn-delete {
+  background-color: rgb(16, 16, 16);
+}
 
 .hide {
   display: none;
+}
+
+/* CSS VALIDATE **/
+
+.validate-error {
+  color: red;
+  margin: 4px 0px;
+  display: none;
+}
+.frm-sc-row input:invalid + p {
+  display: block;
+}
+.toggle {
+  background-color: red;
 }
